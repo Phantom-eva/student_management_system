@@ -13,5 +13,6 @@ app.use("/record", records);
 
 // start the Express server
 app.listen(PORT, () => {
+  console.log('Mongodb Connection Success!')
   console.log(`Server is running on port: ${PORT}`);
 });

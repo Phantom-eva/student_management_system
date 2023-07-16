@@ -4,4 +4,4 @@
 
 # config file
 .vscode
-.env
+/server/.env
