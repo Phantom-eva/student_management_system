@@ -9,6 +9,7 @@ import StudentList from "./components/studentList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 
+// import the style file
 import './App.css'
  
 const App = () => {
