@@ -132,15 +132,15 @@ export default function Edit() {
        <div className="form-group">
          <label htmlFor="photo">Photo: </label>
          <input
-           type="text"
+           type="file"
            className="form-control"
            id="photo"
+           accept="image/png,img/jpeg"
            value={form.photo}
            onChange={(e) => updateForm({ photo: e.target.value })}
          />
        </div>
        <br />
- 
        <div className="form-group">
          <input
            type="submit"

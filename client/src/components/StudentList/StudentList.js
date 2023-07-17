@@ -12,7 +12,7 @@ const Student = (props) => (
      <Link className="btn btn-link" to={`/edit/${props.student._id}`}>Edit</Link> |
      <button className="btn btn-link"
        onClick={() => {
-         props.deleteRecord(props.student._id);
+         props.deleteStudent(props.student._id);
        }}
      >
        Delete
@@ -79,7 +79,7 @@ export default function StudentList() {
            <th>Age</th>
            <th>Gpa</th>
            <th>Photo</th>
-           <th>EDit</th>
+           <th>Edit</th>
          </tr>
        </thead>
        <tbody>{studentList()}</tbody>
