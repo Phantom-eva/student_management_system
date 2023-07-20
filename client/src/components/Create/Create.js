@@ -3,11 +3,12 @@ import { useNavigate } from "react-router";
  
 export default function Create() {
  const [form, setForm] = useState({
-   name: "",
-   gender: "",
-   age: "",
-   gpa: "",
-   photo: "",
+  sid: "",
+  name: "",
+  gender: "",
+  dob: "",
+  section: "",
+  comment: "",
  });
  const navigate = useNavigate();
  
@@ -25,7 +26,7 @@ export default function Create() {
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
-   await fetch("http://localhost:5050/record", {
+   await fetch("http://localhost:5050/student", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
@@ -37,7 +38,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ name: "", gender: "", age: "", gpa: "", photo: "" });
+   setForm({ sid: "", name: "", gender: "", dob: "", section: "", comment: "" });
    navigate("/");
  }
  
@@ -47,7 +48,19 @@ export default function Create() {
      <h3>Create New Student</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Name</label>
+         <label htmlFor="sid">ID (between 1 and 30): </label>
+         <input
+           type="number"
+           className="form-control"
+           id="sid"
+           min="1"
+           max="30"
+           value={form.sid}
+           onChange={(e) => updateForm({ sid: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="name">Name: </label>
          <input
            type="text"
            className="form-control"
@@ -57,6 +70,8 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
+         <label htmlFor="gender">Gender: </label>
+         <br />
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
@@ -83,40 +98,69 @@ export default function Create() {
          </div>
        </div>
        <div className="form-group">
-         <label htmlFor="age">Age: </label>
+         <label htmlFor="dob">Date of Birth: </label>
          <input
-           type="text"
+           type="date"
            className="form-control"
-           id="age"
-           value={form.age}
-           onChange={(e) => updateForm({ age: e.target.value })}
+           id="dob"
+           value={form.dob}
+           onChange={(e) => updateForm({ dob: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="gpa">Gpa: </label>
+         <label htmlFor="section">Section:</label>
+         <br />
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="sectionOptions"
+             id="section001"
+             value="001"
+             checked={form.section === "001"}
+             onChange={(e) => updateForm({ section: e.target.value })}
+           />
+           <label htmlFor="section001" className="form-check-label">001</label>
+         </div>
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="sectionOptions"
+             id="section002"
+             value="002"
+             checked={form.section === "002"}
+             onChange={(e) => updateForm({ section: e.target.value })}
+           />
+           <label htmlFor="section002" className="form-check-label">002</label>
+         </div>
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             name="sectionOptions"
+             id="section003"
+             value="003"
+             checked={form.section === "003"}
+             onChange={(e) => updateForm({ section: e.target.value })}
+           />
+           <label htmlFor="section003" className="form-check-label">003</label>
+         </div>
+       </div>
+       <div className="form-group">
+         <label htmlFor="comment">Comment: </label>
          <input
            type="text"
            className="form-control"
-           id="gpa"
-           value={form.gpa}
-           onChange={(e) => updateForm({ gpa: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="photo">Photo: </label>
-         <input
-           type="file"
-           className="form-control"
-           id="photo"
-           accept="image/png,img/jpeg"
-           value={form.photo}
-           onChange={(e) => updateForm({ photo: e.target.value })}
+           id="comment"
+           value={form.comment}
+           onChange={(e) => updateForm({ comment: e.target.value })}
          />
        </div>
        <div className="form-group">
          <input
            type="submit"
-           value="Create person"
+           value="Create Student"
            className="btn btn-primary"
          />
        </div>

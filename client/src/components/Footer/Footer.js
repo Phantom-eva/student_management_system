@@ -1,10 +1,8 @@
-import React, { useState } from "react"
-import { useLocation } from "react-router-dom"
+import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import "./Style.css"
 
 const Footer = () => {
-    const location = useLocation()
     let date = new Date()
     let year = date.getFullYear();
     return (

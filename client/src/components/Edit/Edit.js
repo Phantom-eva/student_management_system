@@ -3,11 +3,12 @@ import { useParams, useNavigate } from "react-router";
  
 export default function Edit() {
  const [form, setForm] = useState({
+   sid: "",
    name: "",
    gender: "",
-   age: "",
-   gpa: "",
-   photo: "",
+   dob: "",
+   section: "",
+   comment: "",
    records: [],
  });
  const params = useParams();
@@ -49,11 +50,12 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
    const editedPerson = {
+     sid: form.sid,
      name: form.name,
      gender: form.gender,
-     age: form.age,
-     gpa: form.gpa,
-     photo: form.photo
+     dob: form.dob,
+     section: form.section,
+     comment: form.comment
    };
  
    // This will send a post request to update the data in the database.
@@ -71,8 +73,20 @@ export default function Edit() {
  // This following section will display the form that takes input from the user to update the data.
  return (
    <div>
-     <h3>Update Student</h3>
+     <h3>Update Student Information</h3>
      <form onSubmit={onSubmit}>
+       <div className="form-group">
+         <label htmlFor="sid">ID (between 1 and 30): </label>
+         <input
+           type="number"
+           className="form-control"
+           id="sid"
+           min="1"
+           max="30"
+           value={form.sid}
+           onChange={(e) => updateForm({ sid: e.target.value })}
+         />
+       </div>
        <div className="form-group">
          <label htmlFor="name">Name: </label>
          <input
@@ -84,6 +98,7 @@ export default function Edit() {
          />
        </div>
        <div className="form-group">
+         <br />
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
@@ -110,34 +125,32 @@ export default function Edit() {
          </div>
        </div>
        <div className="form-group">
-         <label htmlFor="age">Age: </label>
+         <label htmlFor="dob">Date of Birth: </label>
          <input
-           type="text"
+           type="date"
            className="form-control"
-           id="age"
-           value={form.age}
-           onChange={(e) => updateForm({ age: e.target.value })}
+           id="dob"
+           value={form.dob}
+           onChange={(e) => updateForm({ dob: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <label htmlFor="gpa">Gpa: </label>
+         <label htmlFor="section">Section:</label>
+         <br />
+         <select name="section" id="section" form="sectionform">
+          <option value="001">001</option>
+          <option value="002">002</option>
+          <option value="003">003</option>
+         </select>
+       </div>
+       <div className="form-group">
+         <label htmlFor="comment">Comment: </label>
          <input
            type="text"
            className="form-control"
-           id="gpa"
-           value={form.gpa}
-           onChange={(e) => updateForm({ gpa: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="photo">Photo: </label>
-         <input
-           type="file"
-           className="form-control"
-           id="photo"
-           accept="image/png,img/jpeg"
-           value={form.photo}
-           onChange={(e) => updateForm({ photo: e.target.value })}
+           id="comment"
+           value={form.comment}
+           onChange={(e) => updateForm({ comment: e.target.value })}
          />
        </div>
        <br />

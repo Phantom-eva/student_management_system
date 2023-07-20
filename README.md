@@ -34,15 +34,17 @@ This is a student management system built with MERN stack (MongoDB, Express, Rea
 <pre>cd client</br>
 touch .env</pre>
 
-3. Start the client.
+3. Start the server.
+
+<pre>cd server</br>
+npm install</br>
+npm start</pre>
+
+4. Start the client.
 
 <pre>cd client</br>
 npm install</br>
 npm start</pre>
 
-4. Start the server.
 
-<pre>cd server</br>
-npm install</br>
-npm start</pre>
 

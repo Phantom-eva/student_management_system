@@ -1,45 +1,47 @@
-import React from "react";
- 
-// We import bootstrap to make our application look better.
-import "bootstrap/dist/css/bootstrap.css";
- 
-// We import NavLink to utilize the react router.
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import logo from "./logo192.svg";
+import { Link } from "react-router-dom";
 
-import { Container } from "react-bootstrap"
+// css file
+import "./Style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import "./Style.css"
- 
-// Here, we display our Navbar
-export default function Navbar() {
- return (
-   <Container className="header-navbar">
-     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 25 + '%'}} src="https://d3cy9zhslanhfa.cloudfront.net/media/3800C044-6298-4575-A05D5C6B7623EE37/4B45D0EC-3482-4759-82DA37D8EA07D229/webimage-8A27671A-8A53-45DC-89D7BF8537F15A0D.png" alt="pho"></img>
-       </NavLink>
-       <button
-         className="navbar-toggler"
-         type="button"
-         data-toggle="collapse"
-         data-target="#navbarSupportedContent"
-         aria-controls="navbarSupportedContent"
-         aria-expanded="false"
-         aria-label="Toggle navigation"
-       >
-         <span className="navbar-toggler-icon"></span>
-       </button>
- 
-       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul className="navbar-nav ml-auto">
-           <li className="nav-item">
-             <NavLink className="nav-link" to="/create">
-               Add student
-             </NavLink>
-           </li>
-         </ul>
-       </div>
-     </nav>
-   </Container>
- );
+function NavBar() {
+  const [expand, setExpand] = useState(false);
+
+  return (
+    <Navbar expanded={expand} fixed="top" expand="md" sticky="top">
+      <Container className="navborder">
+        <Navbar.Brand href="/portfolio" className="d-flex">
+          <img src={logo} className="img-fluid logo" alt="brand" />
+          &nbsp;
+          <div className="brand-content">Student Management System</div>
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => {
+            setExpand(expand ? false : "expanded");
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </Navbar.Toggle>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto" defaultActiveKey="#home">
+            <Nav.Item>
+              <Nav.Link as={Link} to="/create" onClick={() => setExpand(false)}>
+                Add student information
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
+
+export default NavBar;

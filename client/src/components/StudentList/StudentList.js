@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
  
 const Student = (props) => (
  <tr>
+   <td>{props.student.sid}</td>
    <td>{props.student.name}</td>
    <td>{props.student.gender}</td>
-   <td>{props.student.age}</td>
-   <td>{props.student.gpa}</td>
-   <td>{props.student.photo}</td>
+   <td>{props.student.dob}</td>
+   <td>{props.student.section}</td>
+   <td>{props.student.comment}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.student._id}`}>Edit</Link> |
      <button className="btn btn-link"
@@ -74,12 +75,13 @@ export default function StudentList() {
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
+           <th>Student ID</th>
            <th>Name</th>
            <th>Gender</th>
-           <th>Age</th>
-           <th>Gpa</th>
-           <th>Photo</th>
-           <th>Edit</th>
+           <th>Date of Birth</th>
+           <th>Section</th>
+           <th>Comment</th>
+           <th>Edit Option</th>
          </tr>
        </thead>
        <tbody>{studentList()}</tbody>
